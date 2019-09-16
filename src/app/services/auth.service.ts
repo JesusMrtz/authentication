@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
-import { IfStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +10,6 @@ export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   private apiKey = 'AIzaSyBno04qtQNhhEEf-nlax6E60Wr8Gxt3Zsw';
   userToken = '';
-
-  // Crear nuevo usuario
-  //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
-
-  //Login 
-  //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
   constructor(private http: HttpClient) {
     this.leerToken();
@@ -38,7 +31,6 @@ export class AuthService {
       authData
     ).pipe(
       map( request => {
-        console.log('Entró en el map');
         this.guardarToken(request['idToken']);
         return request;
       })
@@ -57,7 +49,6 @@ export class AuthService {
       authData
     ).pipe(
       map( request => {
-        console.log('Entró en el map');
         this.guardarToken(request['idToken']);
         return request;
       })
